@@ -48,7 +48,19 @@ public_users.get('/async',function (req, res) {
 
 
 /*-------------------------------------------------------------------------------------*/
+// Get book review based on ISBN
+public_users.get('/review/:isbn',function (req, res) {
+  const isbn = req.params.isbn;
+  const  key = Object.keys(books).find( k => {return k == isbn})
+   if (key)
+   {
+       return res.status(200).json(books[key].reviews);
+   } 
+    return res.status(200).json({message: "Book was not found "+isbn});
+  });
 
+
+/*-------------------------------------------------------------------------------------*/
 
 
 // Get book details based on ISBN
